@@ -1,0 +1,79 @@
+<div
+  class="app-control border-solid border-2 border-round-md surface-border shadow-1 mb-3"
+>
+  <div class="app-buttons">
+    <p-dropdown
+      [options]="choices"
+      [(ngModel)]="selectedChoice"
+      optionLabel="label"
+      (onChange)="onChoiceChange(selectedChoice.code)"
+      [style]="{ width: '300px' }"
+    >
+      <ng-template pTemplate="selectedItem">
+        <div class="flex align-items-center">
+          {{ selectedChoice!.label }}
+        </div>
+      </ng-template>
+      <ng-template let-choice pTemplate="item">
+        <div class="flex align-items-center">
+          <div>{{ choice.label }}</div>
+        </div>
+      </ng-template>
+    </p-dropdown>
+
+    <div
+      class="app-dates border-2 surface-border border-round text-color-secondary"
+      [style.display]="hideDates ? 'none' : 'inline-flex'"
+    >
+      <div class="app-calendar">
+        <label>Du</label>
+        <p-calendar
+          [(ngModel)]="dateFrom"
+          dateFormat="mm/yy"
+          view="month"
+          [minDate]="minDateFrom"
+          [maxDate]="maxDateFrom"
+          [showIcon]="true"
+          [readonlyInput]="true"
+          (onSelect)="onDateChange()"
+        ></p-calendar>
+      </div>
+      <div class="app-calendar">
+        <label>Au</label>
+        <p-calendar
+          [(ngModel)]="dateTo"
+          dateFormat="mm/yy"
+          view="month"
+          [minDate]="minDateTo"
+          [maxDate]="maxDateTo"
+          [showIcon]="true"
+          [readonlyInput]="true"
+          (onSelect)="onDateChange()"
+        >
+        </p-calendar>
+      </div>
+      <div class="app-display">
+        <p-button
+          label="Afficher"
+          icon="pi pi-chart-line"
+          (onClick)="onDisplayResults()"
+        ></p-button>
+      </div>
+    </div>
+  </div>
+
+  <div class="app-save">
+    <p-menubar [model]="saveItems" [style]="{ height: '40px' }"></p-menubar>
+  </div>
+</div>
+
+<div
+  class="app-graph border-solid border-2 border-round-md surface-border shadow-1 pt-2"
+>
+  <app-plot [graph]="graph"></app-plot>
+  <app-progress [displayProgress]="displayProgress"></app-progress>
+</div>
+
+<div class="app-source flex justify-content-end mt-3 mr-2">
+  {{ message }}
+</div>

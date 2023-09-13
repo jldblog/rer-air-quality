@@ -1,0 +1,16 @@
+<div class="app-menu">
+  <div class="app-menu-left"></div>
+  <div class="app-menubars">
+    <p-menubar [model]="items1"></p-menubar>
+    <p-menubar [model]="items2"></p-menubar>
+  </div>
+  <div class="app-menu-right">
+    <p-toggleButton
+      [(ngModel)]="darkTheme"
+      [onIcon]="'bi bi-moon'"
+      [offIcon]="'bi bi-sun'"
+      (onChange)="onThemeChange()"
+      checked="darkTheme"
+    ></p-toggleButton>
+  </div>
+</div>

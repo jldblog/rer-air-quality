@@ -1,0 +1,28 @@
+<div class="app-about">
+  <div class="app-info">
+    <div class="app-center" style="position: relative">
+      <img
+        class="app-logo shadow-2 border-round text-color-secondary"
+        src="assets/logo/logo.webp"
+      />
+      <label style="font-size: 1.5rem">{{ env.name }}</label>
+      <label>Version {{ env.version }}<br /></label>
+      <!-- <label>build {{ env.build | date : "yyyyMMddHHmmss" }}</label> -->
+      <label>
+        Licence
+        <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">
+          GNU GPLv3
+        </a>
+      </label>
+      <label>
+        Sources
+        <a href="{{ env.url }}" target="_blank">{{ env.url }}</a>
+      </label>
+    </div>
+  </div>
+</div>
+<div
+  class="app-doc border-solid border-2 border-round-md surface-border shadow-1 pt-2"
+>
+  <markdown lineNumbers [start]="5" src="assets/doc/doc.md"> </markdown>
+</div>

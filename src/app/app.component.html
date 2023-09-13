@@ -1,0 +1,22 @@
+<div id="root">
+  <div class="wrapper">
+    <div class="app-messages">
+      <p-messages [enableService]="true" [closable]="true"></p-messages>
+    </div>
+    <app-header
+      (measureEvent)="setMeasure($event)"
+      (auboutEvent)="setShowAbout($event)"
+    ></app-header>
+    <app-control [measure]="measure"></app-control>
+    <p-dialog
+      header="À propos"
+      [(visible)]="showAbout"
+      [showHeader]="true"
+      [resizable]="false"
+      [modal]="true"
+      [focusOnShow]="false"
+    >
+      <app-about></app-about>
+    </p-dialog>
+  </div>
+</div>

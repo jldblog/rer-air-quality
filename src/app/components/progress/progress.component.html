@@ -1,0 +1,12 @@
+<p-dialog
+  [(visible)]="displayProgress"
+  [showHeader]="true"
+  [resizable]="false"
+  [modal]="true"
+  [closable]="false"
+  [focusOnShow]="false"
+  header="Actualisation des données..."
+>
+  <p-progressBar mode="indeterminate" [style]="{ height: '8px' }">
+  </p-progressBar>
+</p-dialog>

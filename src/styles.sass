@@ -1,0 +1,39 @@
+@import "variables"
+
+$roboto-font-path: "~roboto-fontface/fonts" !default
+@import "roboto-fontface/css/roboto/sass/roboto-fontface"
+
+@import "~bootstrap-icons/font/bootstrap-icons.css"
+
+html
+    font-family: 'Roboto', sans-serif
+    font-size: 16px
+#root
+    display: flex
+    justify-content: center
+main
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    align-content: center
+    width: 100%
+.wrapper
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    width: var(--wrapperWith)
+a
+    font-weight: bold
+    color: var(--text-color-secondary)
+    &:hover
+        color: var(--primary-color)
+.app-x
+    font-size: 1.2em
+
+// Plotly
+.modebar
+    // border: 2px solid red
+a.modebar-btn
+    font-size: 22px !important
