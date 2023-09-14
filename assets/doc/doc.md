@@ -33,11 +33,11 @@ Le jeu de données hebdomadaires comprend pour toutes les stations les moyennes 
 
 Et selon les stations :
 
-- CO2 en ppm
-- NO en μg/m3
-- NO2 en μg/m3
-- PM10 en μg/m3
-- PM2,5 en μg/m3
+- CO2 en ppm (Auber)
+- NO en μg/m3 (Auber)
+- NO2 en μg/m3 (Auber)
+- PM10 en μg/m3 (Auber, Châtelet & Nation)
+- PM2,5 en μg/m3 (Auber & Nation)
 
 Voici quelques liens utiles pour comprendre les mesures de qualité d'air :
 
