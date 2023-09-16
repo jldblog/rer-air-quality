@@ -1,3 +1,5 @@
+[![GitHub Pages](https://github.com/jldblog/rer-air-quality/actions/workflows/gh-pages.yml/badge.svg)](https://github.com/jldblog/rer-air-quality/actions/workflows/gh-pages.yml)
+
 #### Introduction
 
 La <a href="https://www.ratp.fr/" target="_blank">RATP</a> propose sur son site
