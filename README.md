@@ -27,6 +27,10 @@ Le code source est disponible sur <a href="https://github.com/jldblog" target="_
 
 Ce projet n'est pas lié au groupe RATP.
 
+### Démo
+
+La démo de l'application est en ligne sur GitHub ici : <a href="https://jldblog.github.io/rer-air-quality/" target="_blank">https://jldblog.github.io/rer-air-quality/</a>.
+
 ### Les données
 
 Le jeu de données hebdomadaires comprend pour toutes les stations les moyennes horaires pour :
@@ -52,17 +56,21 @@ Voici quelques liens utiles pour comprendre les mesures de qualité d'air :
 
 ### Galerie
 
-#### Température
+#### Température sur 2 semaines
 
 <img src="docs/assets/img/screenshot-temperature.png" width="600">
 
-#### Humidité
+#### Humidité sur 2 semaines
 
 <img src="docs/assets/img/screenshot-humidite.png" width="600">
 
-#### PM<sub>10</sub>
+#### PM<sub>10</sub> sur 1 mois
 
 <img src="docs/assets/img/screenshot-pm10.png" width="600">
+
+#### PM<sub>2.5</sub> sur 1 mois en mode sombre
+
+<img src="docs/assets/img/screenshot-pm25-dark.webp" width="600">
 
 ### Références
 
