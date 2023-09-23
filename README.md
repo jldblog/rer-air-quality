@@ -1,6 +1,7 @@
 [![GitHub Pages](https://github.com/jldblog/rer-air-quality/actions/workflows/gh-pages.yml/badge.svg)](https://github.com/jldblog/rer-air-quality/actions/workflows/gh-pages.yml)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-#### Introduction
+### Introduction
 
 La <a href="https://www.ratp.fr/" target="_blank">RATP</a> propose sur son site
 <a href="https://data.ratp.fr/" target="_blank">Open Data RATP</a>
@@ -13,7 +14,7 @@ Le site <a href="https://data.ratp.fr/" target="_blank">Open Data RATP</a> expli
 >
 > _Les mesures portent sur les paramètres climatiques usuels (température, humidité relative), le renouvellement d’air (dioxyde de carbone) et la qualité de l’air (oxydes d‘azote, particules)._
 
-#### L'application
+### L'application
 
 Cette application exploite les données ouvertes sur sur la qualité de l'air mesurée dans 3 stations RER (Auber, Châtelet & Nation).
 
@@ -26,7 +27,7 @@ Le code source est disponible sur <a href="https://github.com/jldblog" target="_
 
 Ce projet n'est pas lié au groupe RATP.
 
-#### Les données
+### Les données
 
 Le jeu de données hebdomadaires comprend pour toutes les stations les moyennes horaires pour :
 
@@ -49,7 +50,21 @@ Voici quelques liens utiles pour comprendre les mesures de qualité d'air :
   - <a href="https://www.airparif.asso.fr/les-particules" target="_blank">https://www.airparif.asso.fr/les-particules</a>
   - <a href="https://fr.wikipedia.org/wiki/Particules_en_suspension" target="_blank">https://fr.wikipedia.org/wiki/Particules_en_suspension</a>
 
-#### Références
+### Galerie
+
+#### Température
+
+<img src="docs/assets/img/screenshot-temperature.png" width="600">
+
+#### Humidité
+
+<img src="docs/assets/img/screenshot-humidite.png" width="600">
+
+#### PM<sub>10</sub>
+
+<img src="docs/assets/img/screenshot-pm10.png" width="600">
+
+### Références
 
 - <a href="https://data.ratp.fr/explore/dataset/qualite-de-lair-mesuree-dans-la-station-auber/information/" target="_blank">Qualité de l'air mesurée dans la station Auber</a>
 - <a href="https://data.ratp.fr/explore/dataset/qualite-de-lair-mesuree-dans-la-station-chatelet-rer-a0/information/" target="_blank">Qualité de l'air mesurée dans la station Châtelet RER A</a>
