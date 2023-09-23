@@ -66,19 +66,27 @@ Voici quelques liens utiles pour comprendre les mesures de qualité d'air :
 
 #### Température sur 2 semaines
 
-<img src="docs/assets/img/screenshot-temperature.png" width="600">
+<p align="center">
+  <img src="docs/assets/img/screenshot-temperature.png" width="600">
+</p>
 
 #### Humidité sur 2 semaines
 
-<img src="docs/assets/img/screenshot-humidite.png" width="600">
+<p align="center">
+  <img src="docs/assets/img/screenshot-humidite.png" width="600">
+</p>
 
 #### PM<sub>10</sub> sur 1 mois
 
-<img src="docs/assets/img/screenshot-pm10.png" width="600">
+<p align="center">
+  <img src="docs/assets/img/screenshot-pm10.png" width="600">
+</p>
 
 #### PM<sub>2.5</sub> sur 1 mois en mode sombre
 
-<img src="docs/assets/img/screenshot-pm25-dark.png" width="600">
+<p align="center">
+  <img src="docs/assets/img/screenshot-pm25-dark.png" width="600">
+</p>
 
 ### Références
 
