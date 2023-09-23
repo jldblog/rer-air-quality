@@ -1,6 +1,8 @@
 [![GitHub Pages](https://github.com/jldblog/rer-air-quality/actions/workflows/gh-pages.yml/badge.svg)](https://github.com/jldblog/rer-air-quality/actions/workflows/gh-pages.yml)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
+# rer-air-quality
+
 <p align="center">
   <img src="docs/assets/img/screenshot-temperature.png" width="600">
   <br/>
@@ -28,7 +30,7 @@ L'application est développée avec le framework <a href="https://angular.io/" t
 la libraire de composants <a href="https://primeng.org/" target="_blank">PrimeNG</a> ainsi que
 <a href="https://plotly.com/javascript/" target="_blank">Plotly</a> pour le rendu des graphiques.
 
-Le code source est disponible sur <a href="https://github.com/jldblog" target="_blank">GitHub</a> sous licence
+Le code source est disponible sur <a href="https://github.com/jldblog/rer-air-quality/" target="_blank">GitHub</a> sous licence
 <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GNU GPLv3</a>.
 
 Ce projet n'est pas lié au groupe RATP.
