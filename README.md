@@ -70,7 +70,7 @@ Voici quelques liens utiles pour comprendre les mesures de qualité d'air :
 
 #### PM<sub>2.5</sub> sur 1 mois en mode sombre
 
-<img src="docs/assets/img/screenshot-pm25-dark.webp" width="600">
+<img src="docs/assets/img/screenshot-pm25-dark.png" width="600">
 
 ### Références
 
