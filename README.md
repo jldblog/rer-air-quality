@@ -1,6 +1,12 @@
 [![GitHub Pages](https://github.com/jldblog/rer-air-quality/actions/workflows/gh-pages.yml/badge.svg)](https://github.com/jldblog/rer-air-quality/actions/workflows/gh-pages.yml)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
+<p align="center">
+  <img src="docs/assets/img/screenshot-temperature.png" width="600">
+  <br/>
+  <b><a href="https://jldblog.github.io/rer-air-quality/" target="_blank">https://jldblog.github.io/rer-air-quality/</a></b>
+</p>
+
 ### Introduction
 
 La <a href="https://www.ratp.fr/" target="_blank">RATP</a> propose sur son site
