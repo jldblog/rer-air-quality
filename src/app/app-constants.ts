@@ -42,7 +42,7 @@ export const EMPTY_GRAPH: any = Object.freeze({
         },
         annotations: [
             {
-                text: "Pas de donnée",
+                text: "Aucune donnée sur cette période.",
                 xref: "paper",
                 yref: "paper",
 
