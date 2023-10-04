@@ -220,7 +220,7 @@ export class ControlComponent implements OnChanges, OnInit {
     var msg = '';
 
     if (newData) {
-      msg = 'Données récupérées en ';
+      msg = 'Requêtes réalisées en ';
 
       if (milliseconds >= 1000) {
         msg = msg + this.millisecondsToMMSS(milliseconds);
