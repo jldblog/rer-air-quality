@@ -1,6 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import * as Plotly from 'angular-plotly.js';
-import { DateTime } from 'luxon';
 import { FileSaverService } from 'ngx-filesaver';
 import { MenuItem } from 'primeng/api';
 import * as Constants from 'src/app/app-constants';
@@ -20,7 +19,7 @@ interface Choice {
 export class ControlComponent implements OnChanges, OnInit {
   @Input() public measure: number = -1;
   protected choices: Choice[] = [
-    //  { label: '1 semaine', code: Constants.PERIOD.ONE_WEEK },
+    // { label: '1 semaine', code: Constants.PERIOD.ONE_WEEK },
     { label: '2 semaines', code: Constants.PERIOD.TWO_WEEKS },
     { label: '1 mois', code: Constants.PERIOD.ONE_MONTH },
     { label: '3 mois', code: Constants.PERIOD.THREE_MONTHS },
@@ -117,7 +116,7 @@ export class ControlComponent implements OnChanges, OnInit {
     this.progressStartDate = new Date();
     this.displayProgress = true;
 
-    this.dataService.getGraphPromise(this.dateFrom, this.dateTo, this.measure).then(result => {
+    this.dataService.getGraphToDisplayPromise(this.selectedChoice.code, this.dateFrom, this.dateTo, this.measure).then(result => {
       this.graph = result.graph;
       const newData = result.newData;
       const milliseconds: number = new Date().getTime() - this.progressStartDate.getTime();
@@ -131,51 +130,12 @@ export class ControlComponent implements OnChanges, OnInit {
   }
 
   protected onChoiceChange(choiceCode: number) {
-    const dtNow = DateTime.now();
-
-    switch (choiceCode) {
-      case Constants.PERIOD.ONE_WEEK:
-        this.hideDates = true;
-        this.dateFrom = dtNow.minus({ weeks: 1 }).startOf('day').toJSDate();
-        this.dateTo = dtNow.endOf('day').toJSDate();
-        this.onDisplayResults();
-        break;
-      case Constants.PERIOD.TWO_WEEKS:
-        this.hideDates = true;
-        this.dateFrom = dtNow.minus({ weeks: 2 }).startOf('day').toJSDate();
-        this.dateTo = dtNow.endOf('day').toJSDate();
-        this.onDisplayResults();
-        break;
-      case Constants.PERIOD.ONE_MONTH:
-        this.hideDates = true;
-        this.dateFrom = dtNow.minus({ months: 1 }).startOf('day').toJSDate();
-        this.dateTo = dtNow.endOf('day').toJSDate();
-        this.onDisplayResults();
-        break;
-      case Constants.PERIOD.THREE_MONTHS:
-        this.hideDates = true;
-        this.dateFrom = dtNow.minus({ months: 3 }).startOf('day').toJSDate();
-        this.dateTo = dtNow.endOf('day').toJSDate();
-        this.onDisplayResults();
-        break;
-      case Constants.PERIOD.SIX_MONTHS:
-        this.hideDates = true;
-        this.dateFrom = dtNow.minus({ months: 6 }).startOf('day').toJSDate();
-        this.dateTo = dtNow.endOf('day').toJSDate();
-        this.onDisplayResults();
-        break;
-      case Constants.PERIOD.CURRENT_YEAR:
-        this.hideDates = true;
-        this.dateFrom = DateTime.utc(dtNow.year, 1, 1).startOf('day').toJSDate();
-        this.dateTo = DateTime.utc(dtNow.year, 12, 31).endOf('day').toJSDate();
-        this.onDisplayResults();
-        break;
-      case Constants.PERIOD.FREE_CHOICE:
-        this.hideDates = false;
-        break;
-      // default:
-      //   this.hideDates = true;
-      //   break;
+    if (choiceCode == Constants.PERIOD.FREE_CHOICE) {
+      this.hideDates = false;
+    }
+    else {
+      this.hideDates = true;
+      this.onDisplayResults();
     }
   }
 

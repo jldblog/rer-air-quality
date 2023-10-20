@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { DateTime } from 'luxon';
 import { MessageService } from "primeng/api";
 import { isEmpty } from 'radash';
 import { of } from "rxjs";
@@ -13,34 +14,104 @@ export class DataService {
     private dataset_auber: string = 'qualite-de-lair-mesuree-dans-la-station-auber';
     private dataset_chatelet: string = 'qualite-de-lair-mesuree-dans-la-station-chatelet-rer-a0';
     private dataset_nation: string = 'qualite-de-lair-mesuree-dans-la-station-nation-rer-a0';
-    private currentFromDate!: Date;
-    private currentToDate!: Date;
+    private currentFrom!: string;
+    private currentTo!: string;
     private currentData: any = {};
 
     constructor(private httpClient: HttpClient, private messageService: MessageService) { }
 
     private getDataAuber(from: string, to: string): Promise<any> {
-        return this.getDataPromise(from, to, this.dataset_auber);
+        return this.getDataPromise(-1, from, to, this.dataset_auber);
+    }
+
+    private getDataAuberLastRecord(to: string): Promise<any> {
+        return this.getDataPromise(1, '', to, this.dataset_auber);
     }
 
     private getDataChatelet(from: string, to: string): Promise<any> {
-        return this.getDataPromise(from, to, this.dataset_chatelet);
+        return this.getDataPromise(-1, from, to, this.dataset_chatelet);
     }
 
     private getDataNation(from: string, to: string): Promise<any> {
-        return this.getDataPromise(from, to, this.dataset_nation);
+        return this.getDataPromise(-1, from, to, this.dataset_nation);
     }
 
-    public getGraphPromise(fromDate: Date, toDate: Date, measurement: number): Promise<any> {
-        const from: string = fromDate.toISOString().substring(0, 10);
-        const to: string = toDate.toISOString().substring(0, 10);
+    private computeFrom(dtTo: DateTime, choiceCode: number): DateTime {
+        var dtFrom = dtTo;
 
+        switch (choiceCode) {
+            case Constants.PERIOD.ONE_WEEK:
+                dtFrom = dtTo.minus({ weeks: 1 }).startOf('day');
+                break;
+            case Constants.PERIOD.TWO_WEEKS:
+                dtFrom = dtTo.minus({ weeks: 2 }).startOf('day');
+                break;
+            case Constants.PERIOD.ONE_MONTH:
+                dtFrom = dtTo.minus({ months: 1 }).startOf('day')
+                break;
+            case Constants.PERIOD.THREE_MONTHS:
+                dtFrom = dtTo.minus({ months: 3 }).startOf('day')
+                break;
+            case Constants.PERIOD.SIX_MONTHS:
+                dtFrom = dtTo.minus({ months: 6 }).startOf('day')
+                break;
+            default:
+                // TODO
+                break;
+        }
+
+        return dtFrom;
+    }
+
+    private getFromToPromise(choiceCode: number): Promise<any> {
+        return new Promise((resolve, reject) => {
+            var result: any = [];
+            const dtNow = DateTime.now();
+            var to = dtNow.toISO()!.substring(0, 10);
+
+            this.getDataAuberLastRecord(to).then(data => {
+                const dataAuber: any = data;
+                var dtTo = DateTime.fromISO(dataAuber[0].dateheure.substring(0, 10));
+                var dtFrom = this.computeFrom(dtTo, choiceCode);
+                result['from'] = dtFrom!.toISO()!.substring(0, 10);
+                result['to'] = dtTo.toISO()!.substring(0, 10);
+                resolve(result);
+            });
+        });
+    }
+
+    public getGraphToDisplayPromise(choiceCode: number, fromDate: Date, toDate: Date, measurement: number): Promise<any> {
+        console.log(fromDate, toDate);
+
+        return new Promise((resolve, reject) => {
+            if (choiceCode == Constants.PERIOD.FREE_CHOICE) {
+                const from: string = fromDate.toISOString().substring(0, 10);
+                const to: string = toDate.toISOString().substring(0, 10);
+
+                this.getGraphPromise(from, to, measurement).then(result => {
+                    resolve(result);
+                });
+            }
+            else {
+                this.getFromToPromise(choiceCode).then(result1 => {
+                    const from: string = result1['from'];
+                    const to: string = result1['to'];
+
+                    this.getGraphPromise(from, to, measurement).then(result2 => {
+                        resolve(result2);
+                    });
+                });
+            }
+        });
+    }
+
+    private getGraphPromise(from: string, to: string, measurement: number): Promise<any> {
         return new Promise((resolve, reject) => {
             var result: any = [];
 
-            if (this.currentFromDate != fromDate || this.currentToDate != toDate) {
-                this.currentFromDate = fromDate;
-                this.currentToDate = toDate;
+            if (this.currentFrom != from || this.currentTo != to) {
+                this.currentFrom = from;
+                this.currentTo = to;
 
                 Promise.all([
                     this.getDataAuber(from, to),
@@ -56,7 +127,7 @@ export class DataService {
                     this.currentData[Constants.STATIONS.chatelet_rera] = dataChatelet;
                     this.currentData[Constants.STATIONS.nation_rera] = dataNation;
 
-                    result['graph'] = this.createGraph(measurement);;
+                    result['graph'] = this.createGraph(measurement);
                     result['newData'] = true;
                     resolve(result);
                 });
@@ -232,13 +303,13 @@ export class DataService {
         return result;
     }
 
-    private getDataPromise(from: string, to: string, dataset: string): Promise<any> {
+    private getDataPromise(limit: number, from: string, to: string, dataset: string): Promise<any> {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 const endpoint: string = this.baseUrl + dataset + '/exports/json';
 
                 try {
-                    this.getData(from, to, endpoint).subscribe((data: any) => {
+                    this.getData(limit, from, to, endpoint).subscribe((data: any) => {
                         resolve(data);
                     });
                 }
@@ -249,9 +320,20 @@ export class DataService {
         });
     }
 
-    private getData(from: string, to: String, endpoint: string): Observable<any> {
-        let params: string = '?limit=-1&timezone=UTC&use_labels=false&epsg=4326';
-        params = params + "&where=dateheure>=date'" + from + "' AND dateheure<=date'" + to + "'";
+    private getData(limit: number, from: string, to: String, endpoint: string): Observable<any> {
+        let params: string = '?limit=' + limit + '&timezone=UTC&use_labels=false&epsg=4326';
+
+        if (from) {
+            params = params + "&where=dateheure>=date'" + from + "'";
+
+            if (to) {
+                params = params + "%20AND%20dateheure<=date'" + to + "'";
+            }
+        }
+        else if (to) {
+            params = params + "&where=dateheure<=date'" + to + "'";
+        }
+
         const url: string = endpoint + params;
 
         return this.httpClient.get(url).pipe(catchError(
