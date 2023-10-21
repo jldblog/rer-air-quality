@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { DateTime } from 'luxon';
 import * as Plotly from 'angular-plotly.js';
 import { FileSaverService } from 'ngx-filesaver';
 import { MenuItem } from 'primeng/api';
@@ -37,9 +38,10 @@ export class ControlComponent implements OnChanges, OnInit {
   protected maxDateTo!: Date;
   protected graph: any = [];
   protected displayProgress: boolean = false;
-  protected message: string = '';
-  private progressStartDate!: Date;
+  protected message1: string = '';
+  protected message2: string = '';
   protected hideDates: boolean = true;
+  protected choiceCode: number = Constants.PERIOD.TWO_WEEKS;
 
   protected saveItems: MenuItem[] = [
     {
@@ -113,25 +115,33 @@ export class ControlComponent implements OnChanges, OnInit {
   }
 
   protected onDisplayResults() {
-    this.progressStartDate = new Date();
+    var progressStartDate = new Date();
     this.displayProgress = true;
 
     this.dataService.getGraphToDisplayPromise(this.selectedChoice.code, this.dateFrom, this.dateTo, this.measure).then(result => {
       this.graph = result.graph;
       const newData = result.newData;
-      const milliseconds: number = new Date().getTime() - this.progressStartDate.getTime();
-      this.message = this.formatMessage(milliseconds, newData);
+      this.message1 = this.formatMessage1(result.lastUpdate);
+      this.message2 = this.formatMessage2(progressStartDate, new Date(), newData);
       this.displayProgress = false;
+
+      if (result.lastUpdate) {
+        this.dateTo = DateTime.fromISO(result.lastUpdate).toJSDate();
+      }
     });
   }
 
   protected onDateChange() {
+    this.dateTo = this.endOfMonthDate(this.dateTo);
     this.adjustMinMax();
   }
 
   protected onChoiceChange(choiceCode: number) {
+    this.choiceCode = choiceCode;
+
     if (choiceCode == Constants.PERIOD.FREE_CHOICE) {
       this.hideDates = false;
+      this.dateTo = this.endOfMonthDate(this.dateTo);
     }
     else {
       this.hideDates = true;
@@ -168,28 +178,45 @@ export class ControlComponent implements OnChanges, OnInit {
     var results: string = '';
 
     if (minutes != 0) {
-      results = results + minutes + 'mn et ';
+      results = results + minutes + ' mn et ';
     }
 
-    results = results + seconds + 's';
+    results = results + seconds + ' s';
 
     return results;
   }
 
-  private formatMessage(milliseconds: number, newData: boolean): string {
+  private formatMessage1(lastUpdate: string): string {
+    var msg = '';
+
+    if (lastUpdate) {
+      msg = 'Dernière actualisation des données le ';
+      var dt = DateTime.fromISO(lastUpdate);
+      msg = msg + dt.setLocale('fr').toLocaleString(DateTime.DATE_FULL);
+    }
+
+    return msg;
+  }
+
+  private formatMessage2(progressStartDate: Date, progressEndDate: Date, newData: boolean): string {
     var msg = '';
 
     if (newData) {
+      const milliseconds = progressEndDate.getTime() - progressStartDate.getTime();
       msg = 'Requêtes réalisées en ';
 
       if (milliseconds >= 1000) {
         msg = msg + this.millisecondsToMMSS(milliseconds);
       }
       else {
-        msg = msg + milliseconds + 'ms';
+        msg = msg + milliseconds + ' ms';
       }
     }
 
     return msg;
+  }
+
+  private endOfMonthDate(date: Date): Date {
+    return DateTime.fromJSDate(date).endOf('month').toJSDate();
   }
 }

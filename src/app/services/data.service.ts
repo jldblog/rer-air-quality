@@ -98,6 +98,7 @@ export class DataService {
                     const to: string = result1['to'];
 
                     this.getGraphPromise(from, to, measurement).then(result2 => {
+                        result2['lastUpdate'] = to;
                         resolve(result2);
                     });
                 });

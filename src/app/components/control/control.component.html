@@ -27,7 +27,7 @@
         <label>Du</label>
         <p-calendar
           [(ngModel)]="dateFrom"
-          dateFormat="mm/yy"
+          dateFormat="dd/mm/yy"
           view="month"
           [minDate]="minDateFrom"
           [maxDate]="maxDateFrom"
@@ -40,7 +40,7 @@
         <label>Au</label>
         <p-calendar
           [(ngModel)]="dateTo"
-          dateFormat="mm/yy"
+          dateFormat="dd/mm/yy"
           view="month"
           [minDate]="minDateTo"
           [maxDate]="maxDateTo"
@@ -72,6 +72,7 @@
   <app-progress [displayProgress]="displayProgress"></app-progress>
 </div>
 
-<div class="app-source flex justify-content-end mt-3 mr-2">
-  {{ message }}
+<div class="flex justify-content-between mt-3 mr-2">
+  <label>{{ message1 }}</label>
+  <label>{{ message2 }}</label>
 </div>
