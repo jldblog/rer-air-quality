@@ -1,3 +1,5 @@
+<a href="https://jldblog.github.io/rer-air-quality/"><img src="https://img.shields.io/badge/Demo-jldblog.github.io/rer--air--quality-green"></a>
+
 [![GitHub Pages](https://github.com/jldblog/rer-air-quality/actions/workflows/gh-pages.yml/badge.svg)](https://github.com/jldblog/rer-air-quality/actions/workflows/gh-pages.yml)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
