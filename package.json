@@ -1,6 +1,6 @@
 {
   "name": "rer-air-quality",
-  "version": "0.9.9",
+  "version": "1.0.0",
   "url": "https://github.com/jldblog/rer-air-quality",
   "scripts": {
     "ng": "ng",
