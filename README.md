@@ -6,7 +6,7 @@
 # rer-air-quality
 
 <p align="center">
-  <img src="docs/assets/img/screenshot-temperature.png" width="600">
+  <img src="docs/assets/img/screenshot-temperature.png" width="600px">
   <br/>
   <b><a href="https://jldblog.github.io/rer-air-quality/" target="_blank">https://jldblog.github.io/rer-air-quality/</a></b>
 </p>
