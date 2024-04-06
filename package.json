@@ -1,25 +1,24 @@
 {
   "name": "rer-air-quality",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "url": "https://github.com/jldblog/rer-air-quality",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "buildprod": "ng build --configuration production --base-href /rer-air-quality/"
+    "build": "ng build --configuration=development",
+    "build:prod": "ng build --configuration production --base-href /rer-air-quality/",
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^17.3.2",
-    "@angular/common": "^17.3.2",
-    "@angular/compiler": "^17.3.2",
-    "@angular/core": "^17.3.2",
-    "@angular/forms": "^17.3.2",
-    "@angular/platform-browser": "^17.3.2",
-    "@angular/platform-browser-dynamic": "^17.3.2",
-    "@angular/router": "^17.3.2",
+    "@angular/animations": "^17.3.3",
+    "@angular/common": "^17.3.3",
+    "@angular/compiler": "^17.3.3",
+    "@angular/core": "^17.3.3",
+    "@angular/forms": "^17.3.3",
+    "@angular/platform-browser": "^17.3.3",
+    "@angular/platform-browser-dynamic": "^17.3.3",
+    "@angular/router": "^17.3.3",
     "@types/file-saver": "^2.0.7",
     "@types/luxon": "^3.4.2",
     "@types/streamsaver": "^2.0.4",
@@ -42,9 +41,9 @@
     "zone.js": "~0.14.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^17.3.2",
-    "@angular/cli": "^17.3.2",
-    "@angular/compiler-cli": "^17.3.2",
+    "@angular-devkit/build-angular": "^17.3.3",
+    "@angular/cli": "^17.3.3",
+    "@angular/compiler-cli": "^17.3.3",
     "@types/jasmine": "~5.1.4",
     "@types/marked": "^5.0.2",
     "@types/plotly.js-dist-min": "^2.3.4",
@@ -54,6 +53,6 @@
     "karma-coverage": "~2.2.1",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.4.3"
+    "typescript": "~5.4.4"
   }
 }
