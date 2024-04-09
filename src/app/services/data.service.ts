@@ -81,8 +81,6 @@ export class DataService {
     }
 
     public getGraphToDisplayPromise(choiceCode: number, fromDate: Date, toDate: Date, measurement: number): Promise<any> {
-        console.log(fromDate, toDate);
-
         return new Promise((resolve, reject) => {
             if (choiceCode == Constants.PERIOD.FREE_CHOICE) {
                 const from: string = fromDate.toISOString().substring(0, 10);
