@@ -49,7 +49,7 @@ Voici quelques liens utiles pour comprendre les mesures de qualité d’air :
 
 #### Références
 
-- <a href="https://data.ratp.fr/explore/dataset/qualite-de-lair-mesuree-dans-la-station-auber/information/" target="_blank">Qualité de l’air mesurée dans la station Auber</a>
+- <a href="https://data.ratp.fr/explore/dataset/qualite-de-lair-mesuree-dans-la-station-auber-2021-a-nos-jours/information/" target="_blank">Qualité de l’air mesurée dans la station Auber</a>
 - <a href="https://data.ratp.fr/explore/dataset/qualite-de-lair-mesuree-dans-la-station-chatelet-rer-a0/information/" target="_blank">Qualité de l’air mesurée dans la station Châtelet RER A</a>
 - <a href="https://data.ratp.fr/explore/dataset/qualite-de-lair-mesuree-dans-la-station-nation-rer-a0/information/" target="_blank">Qualité de l’air mesurée dans la station Nation RER A</a>
 - <a href="https://help.opendatasoft.com/apis/ods-explore-v2/explore_v2.1.html" target="_blank">API Opendatasoft</a>
