@@ -29,7 +29,7 @@ export class ControlComponent implements OnChanges, OnInit {
     { label: 'Libre choix des dates', code: Constants.PERIOD.FREE_CHOICE },
   ];
   protected selectedChoice!: Choice;
-  private FIRST_DATE = new Date('2013-01-01');
+  private FIRST_DATE = new Date('2021-01-01');
   protected dateFrom!: Date;
   protected dateTo!: Date;
   protected minDateFrom!: Date;
@@ -102,16 +102,12 @@ export class ControlComponent implements OnChanges, OnInit {
 
   public initDates() {
     const now: Date = new Date();
-    this.minDateFrom = this.FIRST_DATE;
-    this.maxDateFrom = now
-    this.maxDateTo = this.maxDateFrom;
+    this.minDateFrom = this.startOfMonthDate(this.FIRST_DATE);
+    this.maxDateFrom = this.endOfMonthDate(now);
+    this.minDateTo = this.startOfMonthDate(now);
+    this.maxDateTo = this.endOfMonthDate(now);
     this.dateFrom = new Date(now.getFullYear(), now.getMonth(), 1);
     this.dateTo = now;
-  }
-
-  private adjustMinMax() {
-    this.maxDateFrom = this.dateTo;
-    this.minDateTo = this.dateFrom;
   }
 
   protected onDisplayResults() {
@@ -131,9 +127,19 @@ export class ControlComponent implements OnChanges, OnInit {
     });
   }
 
-  protected onDateChange() {
+  protected onDateFromChange() {
+    this.dateFrom = this.startOfMonthDate(this.dateFrom);
+    this.adjustMinMaxDates();
+  }
+
+  protected onDateToChange() {
     this.dateTo = this.endOfMonthDate(this.dateTo);
-    this.adjustMinMax();
+    this.adjustMinMaxDates();
+  }
+
+  private adjustMinMaxDates() {
+    this.maxDateFrom = this.startOfMonthDate(this.dateTo);
+    this.minDateTo = this.endOfMonthDate(this.dateFrom);
   }
 
   protected onChoiceChange(choiceCode: number) {
@@ -214,6 +220,10 @@ export class ControlComponent implements OnChanges, OnInit {
     }
 
     return msg;
+  }
+
+  private startOfMonthDate(date: Date): Date {
+    return DateTime.fromJSDate(date).startOf('month').toJSDate();
   }
 
   private endOfMonthDate(date: Date): Date {

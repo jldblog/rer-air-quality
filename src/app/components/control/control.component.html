@@ -18,7 +18,6 @@
         </div>
       </ng-template>
     </p-dropdown>
-
     <div
       class="app-dates border-2 surface-border border-round text-color-secondary"
       [style.display]="hideDates ? 'none' : 'inline-flex'"
@@ -33,7 +32,7 @@
           [maxDate]="maxDateFrom"
           [showIcon]="true"
           [readonlyInput]="true"
-          (onSelect)="onDateChange()"
+          (onSelect)="onDateFromChange()"
         ></p-calendar>
       </div>
       <div class="app-calendar">
@@ -46,7 +45,7 @@
           [maxDate]="maxDateTo"
           [showIcon]="true"
           [readonlyInput]="true"
-          (onSelect)="onDateChange()"
+          (onSelect)="onDateToChange()"
         >
         </p-calendar>
       </div>
