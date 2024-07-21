@@ -83,8 +83,8 @@ export class DataService {
     public getGraphToDisplayPromise(choiceCode: number, fromDate: Date, toDate: Date, measurement: number): Promise<any> {
         return new Promise((resolve, reject) => {
             if (choiceCode == Constants.PERIOD.FREE_CHOICE) {
-                const from: string = fromDate.toISOString().substring(0, 10);
-                const to: string = toDate.toISOString().substring(0, 10);
+                const from: string = this.toISODate(fromDate);
+                const to: string = this.toISODate(toDate);
 
                 this.getGraphPromise(from, to, measurement).then(result => {
                     resolve(result);
@@ -126,20 +126,20 @@ export class DataService {
                     this.currentData[Constants.STATIONS.chatelet_rera] = dataChatelet;
                     this.currentData[Constants.STATIONS.nation_rera] = dataNation;
 
-                    result['graph'] = this.createGraph(measurement);
+                    result['graph'] = this.createGraph(measurement, from, to);
                     result['newData'] = true;
                     resolve(result);
                 });
             }
             else {
-                result['graph'] = this.createGraph(measurement);
+                result['graph'] = this.createGraph(measurement, from, to);
                 result['newData'] = false;
                 resolve(result);
             }
         });
     }
 
-    private createGraph(measurement: number): any {
+    private createGraph(measurement: number, from: string, to: string): any {
         var graph: any = Constants.EMPTY_GRAPH;
         const data = [
             this.prepareData(Constants.STATIONS.auber_rera, measurement),
@@ -150,14 +150,14 @@ export class DataService {
         if (!isEmpty(data[0]) || !isEmpty(data[1]) || !isEmpty(data[2])) {
             graph = {
                 data: data,
-                layout: this.selectLayout(measurement),
+                layout: this.selectLayout(measurement, from, to),
             };
         }
 
         return graph;
     }
 
-    private selectLayout(measurement: number): any {
+    private selectLayout(measurement: number, from: string, to: string): any {
         var layout: any = {};
 
         switch (measurement) {
@@ -183,6 +183,13 @@ export class DataService {
                 layout = Constants.LAYOUT_TEMPERATURE;
                 break;
         }
+
+        layout = Object.freeze({
+            ...layout,
+            xaxis: {
+                range: [from, to],
+            }
+        });
 
         return layout;
     }
@@ -353,5 +360,9 @@ export class DataService {
 
     public getCurrentData(): any {
         return this.currentData;
+    }
+
+    private toISODate(date: Date): string {
+        return DateTime.fromJSDate(date).toISODate()!.toString();
     }
 }
