@@ -15,7 +15,7 @@ Le site <a href="https://data.ratp.fr/" target="_blank">Open Data RATP</a> expli
 
 Cette application exploite les données ouvertes sur la qualité de l’air mesurée dans 3 stations RER (Auber, Châtelet & Nation).
 
-L'application est développée avec le framework <a href="https://angular.io/" target="_blank">Angular 17</a>,
+L'application est développée avec le framework <a href="https://angular.io/" target="_blank">Angular 18</a>,
 la libraire de composants <a href="https://primeng.org/" target="_blank">PrimeNG 17</a> ainsi que
 <a href="https://plotly.com/javascript/" target="_blank">Plotly</a> pour le rendu des graphiques.
 
