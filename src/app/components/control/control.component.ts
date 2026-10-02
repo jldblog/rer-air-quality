@@ -45,37 +45,35 @@ export class ControlComponent implements OnChanges, OnInit {
 
   protected saveItems: MenuItem[] = [
     {
-      tooltipOptions: {
-        tooltipLabel: 'Sauvegarder'
-      },
+      label: 'Sauvegarder',
       icon: 'bi bi-save',
       items: [
         {
+          label: 'Graphique en PNG',
+          icon: 'bi bi-filetype-png app-x',
           tooltipOptions: {
             tooltipLabel: 'Sauvegarder le graphique au format PNG'
           },
-          label: 'Graphique en PNG',
-          icon: 'bi bi-filetype-png app-x',
           command: () => {
             this.savePlotImage('png');
           }
         },
         {
-          tooltipOptions: {
-            tooltipLabel: 'Sauvegarder le graphique au format SVG'
-          },
           label: 'Graphique en SVG',
           icon: 'bi bi-filetype-svg',
           command: () => {
             this.savePlotImage('svg');
-          }
+          },
+          tooltipOptions: {
+            tooltipLabel: 'Sauvegarder le graphique au format SVG'
+          },
         },
         {
+          label: 'Data en JSON',
+          icon: 'bi bi-filetype-json',
           tooltipOptions: {
             tooltipLabel: 'Sauvegarder les données au format JSON'
           },
-          label: 'Data en JSON',
-          icon: 'bi bi-filetype-json',
           command: () => {
             this.saveCurrentDataToJSON();
           }
